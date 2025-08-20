@@ -6,7 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		26928A7B2E56719600E051D9 /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 26928A7A2E56719600E051D9 /* AppIcon.icon */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
+		26928A7A2E56719600E051D9 /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = AppIcon.icon; sourceTree = "<group>"; };
 		26DF6D082E565E22000BD6C0 /* ScoreKeeper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ScoreKeeper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -34,6 +39,7 @@
 			children = (
 				26DF6D0A2E565E22000BD6C0 /* ScoreKeeper */,
 				26DF6D092E565E22000BD6C0 /* Products */,
+				26928A7A2E56719600E051D9 /* AppIcon.icon */,
 			);
 			sourceTree = "<group>";
 		};
@@ -110,6 +116,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				26928A7B2E56719600E051D9 /* AppIcon.icon in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
