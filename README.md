@@ -1,7 +1,5 @@
-# ScoreKeeper
-
 <div align="center">
-  <img src="" width="300" style="border: 3px solid white; border-radius: 15px; vertical-align: middle; margin-right: 20px;">
+  <img src="https://github.com/OGSarah/ScoreKeeper/blob/c8b2dd6dad4e957508e9db81a75eb828138383bc/AppIcon_Screenshot.png" width="300" style="border: 3px solid white; border-radius: 15px; vertical-align: middle; margin-right: 20px;">
   <h1 style="display: inline-block; vertical-align: middle;">ScoreKeeper</h1>
 </div>
 
