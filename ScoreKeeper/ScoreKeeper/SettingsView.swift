@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @Binding var doesHighestScoreWin: Bool
     @Binding var startingPoints: Int
 
     var body: some View {
         VStack(alignment: .leading) {
-            Text("Game Rules")
+            Text("Game Rules:")
 
             Divider()
+
+            Picker("Win condition", selection: $doesHighestScoreWin) {
+                Text("Highest Score Wins")
+                    .tag(true)
+                Text("Lowest Score Wins")
+                    .tag(false)
+            }
 
             Picker("Start Points", selection: $startingPoints) {
                 Text("0 starting points")
@@ -33,13 +41,15 @@ struct SettingsView: View {
 
 // MARK: - Previews
 #Preview("Dark Mode") {
+    @Previewable @State var doesHighestScoreWin = true
     @Previewable @State var startingPoints = 10
-    SettingsView(startingPoints: $startingPoints)
+    SettingsView(doesHighestScoreWin: $doesHighestScoreWin, startingPoints: $startingPoints)
         .preferredColorScheme(.dark)
 }
 
 #Preview("Light Mode") {
+    @Previewable @State var doesHighestScoreWin = true
     @Previewable @State var startingPoints = 10
-    SettingsView(startingPoints: $startingPoints)
+    SettingsView(doesHighestScoreWin: $doesHighestScoreWin, startingPoints: $startingPoints)
         .preferredColorScheme(.light)
 }

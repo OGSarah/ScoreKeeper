@@ -18,7 +18,7 @@ struct ContentView: View {
                 .bold()
                 .padding(.bottom)
 
-                SettingsView(startingPoints: $startingPoints)
+                SettingsView(doesHighestScoreWin: $scoreboard.doesHighestScoreWin, startingPoints: $startingPoints)
 
             Grid {
                 GridRow {
@@ -30,7 +30,14 @@ struct ContentView: View {
 
                 ForEach($scoreboard.players) { $player in
                     GridRow {
-                        TextField("Name", text: $player.name)
+                        HStack {
+                            // Checks whether the player is in the scoreboard's winners array
+                            if scoreboard.winners.contains(player) {
+                                Image(systemName: "crown.fill")
+                                    .foregroundStyle(.yellow)
+                            }
+                            TextField("Name", text: $player.name)
+                        }
                         Text("\(player.score)")
                         Stepper("\(player.score)", value: $player.score)
                             .labelsHidden()
