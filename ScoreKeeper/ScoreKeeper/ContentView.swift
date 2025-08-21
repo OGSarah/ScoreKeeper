@@ -19,19 +19,20 @@ struct ContentView: View {
                 .padding(.bottom)
 
                 SettingsView(doesHighestScoreWin: $scoreboard.doesHighestScoreWin, startingPoints: $startingPoints)
+                    .disabled(scoreboard.state != .setup)
 
             Grid {
                 GridRow {
                     Text("Player")
                         .gridColumnAlignment(.leading)
                     Text("Score")
+                        .opacity(scoreboard.state == .setup ? 0 : 1.0)
                 }
                 .font(.headline)
 
                 ForEach($scoreboard.players) { $player in
                     GridRow {
                         HStack {
-                            // Checks whether the player is in the scoreboard's winners array
                             if scoreboard.winners.contains(player) {
                                 Image(systemName: "crown.fill")
                                     .foregroundStyle(.yellow)
@@ -52,34 +53,42 @@ struct ContentView: View {
             .foregroundStyle(.white)
             .padding(10)
             .glassEffect(.regular.tint(.blue).interactive())
+            .opacity(scoreboard.state == .setup ? 1.0 : 0)
 
             Spacer()
 
-            switch scoreboard.state {
-                case .setup:
-                    Button("Start Game", systemImage: "play.fill") {
-                        scoreboard.state = .playing
-                        scoreboard.resetScores(to: startingPoints)
-                    }
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .glassEffect(.regular.tint(.blue).interactive())
+            HStack {
+                Spacer()
+                switch scoreboard.state {
+                    case .setup:
+                        Button("Start Game", systemImage: "play.fill") {
+                            scoreboard.state = .playing
+                            scoreboard.resetScores(to: startingPoints)
+                        }
+                        .controlSize(.large)
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .glassEffect(.regular.tint(.blue).interactive())
 
-                case .playing:
-                    Button("End Game", systemImage: "stop.fill") {
-                        scoreboard.state = .gameOver
-                    }
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .glassEffect(.regular.tint(.red).interactive())
+                    case .playing:
+                        Button("End Game", systemImage: "stop.fill") {
+                            scoreboard.state = .gameOver
+                        }
+                        .controlSize(.large)
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .glassEffect(.regular.tint(.red).interactive())
 
-                case .gameOver:
-                    Button("Reset Game", systemImage: "arrow.counterclockwise") {
-                        scoreboard.state = .setup
-                    }
-                    .foregroundStyle(.white)
-                    .padding(10)
-                    .glassEffect(.regular.tint(.yellow).interactive())
+                    case .gameOver:
+                        Button("Reset Game", systemImage: "arrow.counterclockwise") {
+                            scoreboard.state = .setup
+                        }
+                        .controlSize(.large)
+                        .foregroundStyle(.white)
+                        .padding(10)
+                        .glassEffect(.regular.tint(.yellow).interactive())
+                }
+                Spacer()
             }
         }
         .padding()
