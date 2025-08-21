@@ -23,4 +23,32 @@ struct ScoreKeeperTests {
         }
     }
 
+    @Test("Highest score wins")
+    func highestScoreWins() {
+        let scoreboard = Scoreboard(
+            players: [
+                Player(name: "Molly", score: 0),
+                Player(name: "Orko", score: 4)
+            ],
+            state: .gameOver,
+            doesHighestScoreWin: true
+        )
+        let winners = scoreboard.winners
+        #expect(winners == [Player(name: "Orko", score: 4)])
+    }
+
+    @Test("Lowest score wins")
+    func lowestScoreWins() {
+        let scoreboard = Scoreboard(
+            players: [
+                Player(name: "Molly", score: 0),
+                Player(name: "Orko", score: 4)
+            ],
+            state: .gameOver,
+            doesHighestScoreWin: false
+        )
+        let winners = scoreboard.winners
+        #expect(winners == [Player(name: "Molly", score: 0)])
+    }
+
 }
